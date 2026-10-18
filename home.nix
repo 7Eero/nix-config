@@ -33,7 +33,7 @@
     bat
     jq
     ani-cli
-    kopuz
+    anki-bin
     # Flake packages
     #inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default
     #inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
