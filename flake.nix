@@ -33,14 +33,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."eero" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home.nix
-          niri.homeModules.niri
-        ];
-        extraSpecialArgs = { inherit inputs; };
+    in rec {
+      homeConfigurations = {
+        "eero" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.nix
+            niri.homeModules.niri
+          ];
+          extraSpecialArgs = { inherit inputs; };
+        };
+        "eero@archlinux" = homeConfigurations."eero";
       };
     };
 }
