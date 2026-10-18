@@ -83,7 +83,7 @@
       "....." = "cd ../../../..";
     };
 
-    initExtra = ''
+    initContent = ''
       export GTK_THEME="adw-gtk3-dark"
       export ADW_DEBUG_COLOR_SCHEME="prefer-dark"
       export _JAVA_AWT_WM_NONREPARENTING=1
