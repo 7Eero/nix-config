@@ -15,11 +15,19 @@
   # Ensure DMS include targets exist so Niri never throws missing-file errors on startup
   home.activation.setupNiriDms = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir -p "$HOME/.config/niri/dms"
-    for file in binds.kdl cursor.kdl windowrules.kdl outputs.kdl; do
+    for file in binds.kdl windowrules.kdl outputs.kdl; do
       if [ ! -f "$HOME/.config/niri/dms/$file" ]; then
         $DRY_RUN_CMD touch "$HOME/.config/niri/dms/$file"
       fi
     done
+    if [ ! -s "$HOME/.config/niri/dms/cursor.kdl" ]; then
+      cat << 'EOF' > "$HOME/.config/niri/dms/cursor.kdl"
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+}
+EOF
+    fi
   '';
 
   # 2. DankMaterialShell, Quickshell & Theming Tools
@@ -35,7 +43,38 @@
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
   ];
 
-  # 3. Alacritty
+  # 3. Cursor & Icon Theming
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
+    iconTheme = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      cursor-theme = "Bibata-Modern-Ice";
+      cursor-size = 24;
+      icon-theme = "Bibata-Modern-Ice";
+    };
+  };
+
+  # 4. Alacritty
   # Inherited from home.nix with identical fonts, padding, and dank-theme.toml import,
   # built with native GPU acceleration on NixOS.
 }
