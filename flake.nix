@@ -35,15 +35,28 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in rec {
       homeConfigurations = {
-        "eero" = home-manager.lib.homeManagerConfiguration {
+        # Arch Linux host profile
+        "eero@archlinux" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home.nix
+            ./hosts/arch.nix
             niri.homeModules.niri
           ];
           extraSpecialArgs = { inherit inputs; };
         };
-        "eero@archlinux" = homeConfigurations."eero";
+
+        # Default alias for Arch Linux (user 'eero')
+        "eero" = homeConfigurations."eero@archlinux";
+
+        # NixOS host profile
+        "eero@nixos" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/nixos.nix
+            niri.homeModules.niri
+          ];
+          extraSpecialArgs = { inherit inputs; };
+        };
       };
     };
 }

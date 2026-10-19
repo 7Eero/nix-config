@@ -6,9 +6,6 @@
   home.homeDirectory = "/home/eero";
   home.stateVersion = "26.05"; # Match current release version
 
-  # Crucial for non-NixOS Linux (sets up XDG vars, fonts, desktop files)
-  targets.genericLinux.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -47,7 +44,6 @@
   # Alacritty configuration
   programs.alacritty = {
     enable = true;
-    package = null;
     settings = {
       general = {
         import = [
