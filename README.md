@@ -40,6 +40,15 @@ home-manager switch --flake ~/.config/nix-config
 
 ---
 
+### NixOS Host Notes (Niri & DMS)
+
+* The `eero@nixos` profile automatically installs `niri`, `dms` (DankMaterialShell), `matugen`, and your shared `alacritty` configuration.
+* In your NixOS system configuration (`/etc/nixos/configuration.nix`), enable the Niri module so PAM and seat management work out of the box:
+  ```nix
+  programs.niri.enable = true;
+  ```
+
+---
 
 ## 💻 First-Time Setup on a New Machine
 
