@@ -27,37 +27,6 @@ input {
      focus-follows-mouse max-scroll-amount="0%"
 }
 
-/-output "eDP-1" {
-
-    mode "1920x1080@120.030"
-
-    scale 2
-
-    transform "normal"
-
-    position x=1280 y=0
-}
-output "DP-3" {
-    mode "2560x1440@143.856"
-    scale 1.0
-    transform "normal"
-    position x=0 y=0
-}
-
-output "DP-1" {
-    mode "2560x1440@164.835"
-    scale 1.0
-    transform "normal"
-    position x=2560 y=0
-}
-
-output "DP-2" {
-    mode "2560x1440@60"
-    scale 1.0
-    transform "90"
-    position x=5120 y=-650
-}
-
 layout {
     gaps 5
 
@@ -209,12 +178,12 @@ window-rule {
 }
 
 window-rule {
-    open-on-workspace "left"
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^keepassxc$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
+    open-floating true
     block-out-from "screen-capture"
-
 }
 
 /-window-rule {
