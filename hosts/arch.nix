@@ -8,4 +8,7 @@
 
   # Use native Arch pacman binary for Alacritty to integrate directly with host GPU & Wayland
   programs.alacritty.package = null;
+
+  # Niri is installed and managed via pacman (niri-git) on Arch
+  programs.niri.enable = false;
 }

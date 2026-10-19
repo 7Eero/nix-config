@@ -36,10 +36,6 @@
 
   ];
 
-  # Niri configuration
-  programs.niri = {
-    enable = false;
-  };
 
   # Alacritty configuration
   programs.alacritty = {
