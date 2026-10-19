@@ -35,7 +35,8 @@ EOF
     inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default
     quickshell # provides both 'quickshell' and 'qs'
     matugen
-
+    keepassxc
+    nextcloud-client
     # User Applications
     brave-origin
     vscode
