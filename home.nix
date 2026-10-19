@@ -130,13 +130,15 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
+      "hm-switch" = "home-manager switch --flake ~/.config/nix-config";
     };
 
     oh-my-zsh = {
       enable = true;
       plugins = [
         "git"
-        "thefuck"
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
         "python"
       ];
     };
