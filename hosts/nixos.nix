@@ -26,6 +26,12 @@
     inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default
     quickshell # provides both 'quickshell' and 'qs'
     matugen
+
+    # User Applications
+    brave-origin
+    vscode
+    inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
   ];
 
   # 3. Alacritty
