@@ -37,6 +37,7 @@ EOF
     matugen
     keepassxc
     nextcloud-client
+    xwayland-satellite
     # User Applications
     brave-origin
     vscode
