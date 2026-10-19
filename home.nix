@@ -93,7 +93,7 @@
     enable = true;
     settings = {
       user.name = "7Eero";
-      user.email = "eero@cyberbullying.club";
+      user.email = "126098783+7Eero@users.noreply.github.com";
     };
   };
 
@@ -119,7 +119,7 @@
       bye = "shutdown -h now";
       neofetch = "fastfetch -c neofetch.jsonc --logo-type chafa -l ~/.config/fastfetch/img/pfp.jpg";
       reload = "source $HOME/.zshrc && echo \".zshrc sourced!\"";
-      "sää" = "curl wttr.in/riihimäki | head -n -1";
+      "wttr" = "curl wttr.in | head -n -1";
       t25 = "termdown 25m";
       yayf = "yay -Slq | fzf --multi --preview 'paru -Sii {1}' --preview-window=down:75% | xargs -ro yay -S";
       ".." = "cd ..";
