@@ -10,6 +10,7 @@
   };
 
   xdg.configFile."niri/config.kdl".source = ../dotfiles/niri/config.kdl;
+  xdg.configFile."DankMaterialShell/settings.json".source = ../dotfiles/DankMaterialShell/settings.json;
 
   # Ensure DMS include targets exist so Niri never throws missing-file errors on startup
   home.activation.setupNiriDms = lib.hm.dag.entryAfter ["writeBoundary"] ''
