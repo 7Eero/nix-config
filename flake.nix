@@ -21,7 +21,6 @@
     };
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";

@@ -1,10 +1,6 @@
 # nix-config
 
-Declarative user environment managed with **Nix Flakes** and **Home Manager**, configured to support both **Arch Linux** and **NixOS**.
-
----
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 ~/.config/nix-config/
@@ -17,7 +13,7 @@ Declarative user environment managed with **Nix Flakes** and **Home Manager**, c
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Apply Configuration Changes
 
@@ -37,26 +33,3 @@ Declarative user environment managed with **Nix Flakes** and **Home Manager**, c
 nix flake update --flake ~/.config/nix-config
 home-manager switch --flake ~/.config/nix-config
 ```
-
----
-
-### NixOS Host Notes (Niri & DMS)
-
-* The `eero@nixos` profile automatically installs `niri`, `dms` (DankMaterialShell), `matugen`, and your shared `alacritty` configuration.
-* In your NixOS system configuration (`/etc/nixos/configuration.nix`), enable the Niri module so PAM and seat management work out of the box:
-  ```nix
-  programs.niri.enable = true;
-  ```
-
----
-
-## 💻 First-Time Setup on a New Machine
-
-1. Ensure Nix and Flakes are installed and enabled.
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/7Eero/nix-config.git ~/.config/nix-config
-   ```
-3. Apply the appropriate host profile:
-   * **Arch:** `nix run github:nix-community/home-manager -- switch --flake ~/.config/nix-config#eero@archlinux`
-   * **NixOS:** `nix run github:nix-community/home-manager -- switch --flake ~/.config/nix-config#eero@nixos`
