@@ -132,6 +132,15 @@
       "....." = "cd ../../../..";
     };
 
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "thefuck"
+        "python"
+      ];
+    };
+
     initContent = ''
       export GTK_THEME="adw-gtk3-dark"
       export ADW_DEBUG_COLOR_SCHEME="prefer-dark"
@@ -140,20 +149,40 @@
       export EDITOR=nvim
       export MANPAGER='nvim +Man!'
 
-      # Oh My Zsh if present
-      if [ -d "$HOME/.oh-my-zsh" ]; then
-        export ZSH="$HOME/.oh-my-zsh"
-        ZSH_THEME="aphrodite/aphrodite"
-        plugins=(
-          git
-          archlinux
-          zsh-autosuggestions
-          zsh-syntax-highlighting
-          thefuck
-          python
-        )
-        source $ZSH/oh-my-zsh.sh
-      fi
+      # Aphrodite Theme (Embedded so it works out of the box on NixOS and Arch)
+      export VIRTUAL_ENV_DISABLE_PROMPT=true
+      setopt PROMPT_SUBST
+
+      aphrodite_get_prompt() {
+        if [[ -v VIRTUAL_ENV ]]; then
+          echo -n "%F{7}["$(basename "$VIRTUAL_ENV")"]%f "
+        fi
+
+        echo -n "%F{6}%n"
+        echo -n "%F{8}@"
+        echo -n "%F{12}%m"
+        echo -n "%F{8}:"
+        echo -n "%f%~"
+        echo -n " "
+
+        local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
+        if [[ -n "$git_branch" ]]; then
+          local git_status=$(git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
+          [[ -n "$git_status" ]] && echo -n "%F{11}" || echo -n "%F{10}"
+          echo -n "‹''${git_branch}›%f"
+        fi
+
+        if [[ -v APHRODITE_THEME_SHOW_TIME ]]; then
+          echo -n "%F{8} [%D{%H:%M:%S}]%f"
+        fi
+
+        echo
+
+        echo -n "%(?.%f.%F{1})"
+        echo -n "%(!.#.$)%f "
+      }
+
+      export PROMPT='$(aphrodite_get_prompt)'
 
       source <(fzf --zsh)
 
