@@ -39,12 +39,23 @@ EOF
     keepassxc
     nextcloud-client
     xwayland-satellite
+    thunar
     # User Applications
     brave-origin
-    vscode
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
+    # Language Tooling
+    nixd
+    nixfmt
   ];
+
+  # Visual Studio Code with Nix Language Support
+  programs.vscode = {
+    enable = true;
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+    ];
+  };
 
   # 3. Cursor & Icon Theming
   home.pointerCursor = {
