@@ -21,9 +21,10 @@
     done
   '';
 
-  # 2. DankMaterialShell & Theming Tools
+  # 2. DankMaterialShell, Quickshell & Theming Tools
   home.packages = with pkgs; [
     inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    quickshell # provides both 'quickshell' and 'qs'
     matugen
   ];
 
