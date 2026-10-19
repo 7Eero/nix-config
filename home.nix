@@ -47,6 +47,7 @@
   # Alacritty configuration
   programs.alacritty = {
     enable = true;
+    package = null;
     settings = {
       general = {
         import = [
