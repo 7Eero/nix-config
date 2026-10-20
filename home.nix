@@ -164,7 +164,6 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
-      "hm-switch" = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
     };
 
     oh-my-zsh = {
