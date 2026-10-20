@@ -5,7 +5,7 @@
 
   # 1. Niri Wayland Compositor (using exact config from Arch)
   programs.niri = {
-    package = pkgs.niri; # Niri 26.04 (matches Arch 26.04 series)
+    package = pkgs.niri; # 26.4 — matches Arch host
     config = null;
   };
 

@@ -65,7 +65,10 @@
   # Configure console keymap
   console.keyMap = "fi";
   
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri; # 26.4 — matches Arch host
+  };
   
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -120,7 +123,6 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    firefox
     git
   ];
 
