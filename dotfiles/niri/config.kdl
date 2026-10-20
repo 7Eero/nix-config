@@ -93,7 +93,8 @@ spawn-at-startup "xwayland-satellite"
 
 spawn-at-startup "steam"
 spawn-at-startup "thunar" "--daemon"
-spawn-at-startup "easyeffects" "-w"
+// easyeffects is managed by systemd user service (easyeffects.service)
+// spawn-at-startup "easyeffects" "-w"
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
