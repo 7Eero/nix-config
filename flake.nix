@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration";
+  description = "Modular NixOS and Home Manager configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -39,7 +39,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/nixos-system/configuration.nix
+            ./hosts/nixos/system/configuration.nix
             niri.nixosModules.niri
           ];
         };
@@ -50,7 +50,7 @@
         "eero@archlinux" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/arch.nix
+            ./hosts/arch/default.nix
             niri.homeModules.niri
           ];
           extraSpecialArgs = { inherit inputs; };
@@ -63,7 +63,7 @@
         "eero@nixos" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/nixos.nix
+            ./hosts/nixos/default.nix
             niri.homeModules.niri
           ];
           extraSpecialArgs = { inherit inputs; };

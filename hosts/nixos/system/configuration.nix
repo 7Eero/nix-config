@@ -52,8 +52,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = false;
+  services.desktopManager.gnome.enable = true;
   services.displayManager.ly.enable = true;
 
   # Configure keymap in X11
@@ -73,7 +73,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  #Enable sound with pipewire.
+  # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -106,7 +106,7 @@
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "eero" = import ../nixos.nix;
+      "eero" = import ../default.nix;
     };
   };
   # Install firefox.
@@ -152,5 +152,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }

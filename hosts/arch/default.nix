@@ -1,7 +1,11 @@
 { ... }:
 
 {
-  imports = [ ../home.nix ];
+  imports = [
+    ../../modules/home/core
+    ../../modules/home/shell
+    ../../modules/home/terminal/alacritty.nix
+  ];
 
   # Arch Linux / generic Linux specific: sets up XDG dirs, desktop entries, and GPU bridge
   targets.genericLinux.enable = true;
