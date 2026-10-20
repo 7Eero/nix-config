@@ -1,6 +1,6 @@
 # nix-config
 
-Flake-based Home Manager and system configuration for Arch Linux and NixOS.
+Modular Flake-based Home Manager and system configuration for Arch Linux and NixOS.
 
 ---
 
@@ -8,49 +8,83 @@ Flake-based Home Manager and system configuration for Arch Linux and NixOS.
 
 ```text
 ~/.config/nix-config/
-├── flake.nix        # Flake inputs and host output definitions
-├── flake.lock       # Pinned dependency locks
-├── home.nix         # Shared user configuration (packages, Zsh, Git, environment, systemd)
-├── dotfiles/        # Standalone config files symlinked into place
-│   ├── DankMaterialShell/settings.json
-│   └── niri/config.kdl
+├── flake.nix                       # Flake inputs and host output definitions
+├── flake.lock                      # Pinned dependency locks
+├── dotfiles/                       # Raw dotfiles symlinked by Home Manager
+│   ├── DankMaterialShell/
+│   │   └── settings.json
+│   └── niri/
+│       └── config.kdl
+├── modules/
+│   └── home/
+│       ├── core/                   # Base configuration shared across all hosts
+│       │   ├── default.nix         # User identity, state version, unfree config
+│       │   ├── packages.nix        # Core CLI utilities (ripgrep, eza, btop, fzf, etc.)
+│       │   ├── session.nix         # Environment variables & systemd login service
+│       │   └── git.nix             # Git credentials and configuration
+│       ├── shell/                  # Shell configurations
+│       │   ├── default.nix         # Shell aggregator
+│       │   ├── zsh.nix             # Zsh + Aphrodite prompt, aliases, plugins, fzf
+│       │   └── bash.nix            # Bash interactive fallback to Zsh
+│       ├── terminal/               # Terminal emulators
+│       │   └── alacritty.nix       # Alacritty fonts, padding, and theme settings
+│       └── desktop/                # Graphical environment & Wayland components
+│           ├── default.nix         # Desktop aggregator
+│           ├── niri.nix            # Niri compositor config & DankMaterialShell setup
+│           ├── theme.nix           # Cursor (Bibata), GTK theme, and dconf settings
+│           └── apps.nix            # GUI apps (Brave, VS Code, KeepassXC, Antigravity)
 └── hosts/
-    ├── arch.nix     # Arch Linux profile (genericLinux enabled, native Alacritty)
-    └── nixos.nix    # NixOS profile (Niri compositor, GPU acceleration, DankMaterialShell)
+    ├── arch/
+    │   └── default.nix             # Arch profile (genericLinux, native Alacritty)
+    └── nixos/
+        ├── default.nix             # NixOS Home Manager profile (Core + Desktop)
+        └── system/
+            ├── configuration.nix   # NixOS system-level configuration
+            └── hardware-configuration.nix
 ```
+
+---
 
 ## Usage
 
 ### 1. Apply Configuration Changes
 
-* **On Arch Linux:**
+* **On Arch Linux (Standalone Home Manager):**
   ```bash
   home-manager switch --flake ~/.config/nix-config
+  # or explicitly:
+  home-manager switch --flake ~/.config/nix-config#eero@archlinux
   ```
-  *(Or use the shell alias `hm-switch`)*
+
+* **On NixOS (System Rebuild):**
+  ```bash
+  sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos
+  ```
 
 * **On NixOS (Standalone Home Manager):**
   ```bash
   home-manager switch --flake ~/.config/nix-config#eero@nixos
   ```
 
-* **On NixOS (System-level Rebuild, if using NixOS flake module):**
-  ```bash
-  sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos
-  ```
+### 2. Check / Evaluate Flake
 
-### 2. Update Flake Inputs
-
-To update all inputs (nixpkgs, home-manager, niri, etc.) to their latest revisions:
+To verify configuration syntax and module evaluation without applying:
 
 ```bash
-nix flake update --flake ~/.config/nix-config
-home-manager switch --flake ~/.config/nix-config
+nix flake check --no-build
 ```
 
-### 3. Verify Background Services
+### 3. Update Flake Inputs
 
-To check the status of the user environment auto-activation service:
+To update all inputs (`nixpkgs`, `home-manager`, `niri`, etc.) to their latest revisions:
+
+```bash
+nix flake update
+```
+
+### 4. Background Services
+
+To inspect the status of the user environment auto-activation service on standalone systems:
 
 ```bash
 systemctl --user status home-manager-ensure.service
