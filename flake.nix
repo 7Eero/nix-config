@@ -33,6 +33,18 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in rec {
+      # NixOS system configuration (sudo nixos-rebuild switch --flake .#nixos)
+      nixosConfigurations = {
+        "nixos" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixos-system/configuration.nix
+            niri.nixosModules.niri
+          ];
+        };
+      };
+
       homeConfigurations = {
         # Arch Linux host profile
         "eero@archlinux" = home-manager.lib.homeManagerConfiguration {

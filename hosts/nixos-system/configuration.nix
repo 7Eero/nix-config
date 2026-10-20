@@ -99,13 +99,13 @@
     ];
   };
   
-home-manager = {
-  # also pass inputs to home-manager modules
-  extraSpecialArgs = {inherit inputs;};
-  users = {
-    "eero" = import ./home.nix;
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "eero" = import ../nixos.nix;
+    };
   };
-};
   # Install firefox.
   programs.firefox.enable = true;
   
