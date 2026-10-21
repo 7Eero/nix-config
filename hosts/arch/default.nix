@@ -6,6 +6,7 @@
     ../../modules/home/shell
     ../../modules/home/terminal/alacritty.nix
     ../../modules/home/desktop/theme.nix
+    ../../modules/home/desktop/qt.nix
   ];
 
   # Arch Linux / generic Linux specific: sets up XDG dirs, desktop entries, and GPU bridge
