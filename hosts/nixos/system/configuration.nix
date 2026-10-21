@@ -103,6 +103,9 @@
   };
   
   home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    sharedModules = [ inputs.niri.homeModules.niri ];
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
