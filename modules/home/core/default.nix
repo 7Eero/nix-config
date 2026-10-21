@@ -5,6 +5,8 @@
     ./packages.nix
     ./session.nix
     ./git.nix
+    ./btop.nix
+    ./fastfetch.nix
   ];
 
   # Mandatory user options

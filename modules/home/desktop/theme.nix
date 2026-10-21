@@ -11,8 +11,13 @@
     x11.enable = true;
   };
 
+  # GTK Theme
   gtk = {
     enable = true;
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
     cursorTheme = {
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
@@ -30,6 +35,8 @@
     "org/gnome/desktop/interface" = {
       cursor-theme = "Bibata-Modern-Ice";
       cursor-size = 24;
+      gtk-theme = "adw-gtk3-dark";
+      color-scheme = "prefer-dark";
     };
   };
 }

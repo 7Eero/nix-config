@@ -9,7 +9,7 @@
     brave-origin
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
-    # appimage-run with webkit2gtk bundled for Electron/WebKitGTK AppImages (e.g. Cumulus)
+    # appimage-run with webkit2gtk bundled for Electron/WebKitGTK AppImages
     (appimage-run.override {
       extraPkgs = p: with p; [ webkitgtk_4_1 libsoup_3 gdk-pixbuf openssl libayatana-appindicator ];
     })

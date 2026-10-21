@@ -6,8 +6,6 @@
     ripgrep
     fd
     eza
-    btop
-    fastfetch
     gallery-dl
     termdown
     neovim

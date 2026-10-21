@@ -7,5 +7,6 @@
     ./apps.nix
     ./audio.nix
     ./qt.nix
+    ./media.nix
   ];
 }
