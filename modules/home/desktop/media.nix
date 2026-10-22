@@ -1,10 +1,7 @@
 { ... }:
 
 {
-  programs.mpv = {
-    enable = true;
-    config = {
-      keep-open = "yes";
-    };
-  };
+  xdg.configFile."mpv/mpv.conf".text = ''
+    keep-open=yes
+  '';
 }

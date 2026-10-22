@@ -7,8 +7,8 @@
     ../../modules/home/terminal/alacritty.nix
     ../../modules/home/desktop/theme.nix
     ../../modules/home/desktop/qt.nix
-  #  ../../modules/home/desktop/audio.nix
-  #  ../../modules/home/desktop/media.nix
+    ../../modules/home/desktop/audio.nix
+    ../../modules/home/desktop/media.nix
   ];
 
   # Arch Linux / generic Linux specific: sets up XDG dirs, desktop entries, and GPU bridge
