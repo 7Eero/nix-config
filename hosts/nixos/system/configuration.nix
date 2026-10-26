@@ -115,6 +115,13 @@
   # Install firefox.
   programs.firefox.enable = true;
   
+  # Gaming support
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+  programs.gamemode.enable = true;
+
   programs.vim.enable = true;
   programs.vim.defaultEditor = true;  
 

@@ -28,18 +28,33 @@ Modular Flake-based Home Manager and system configuration for Arch Linux and Nix
 │       │   └── bash.nix            # Bash interactive fallback to Zsh
 │       ├── terminal/               # Terminal emulators
 │       │   └── alacritty.nix       # Alacritty fonts, padding, and theme settings
+│       ├── gaming/                 # Gaming setup, compatibility, & emulation
+│       │   ├── default.nix         # Gaming aggregator
+│       │   ├── mangohud.nix        # MangoHud overlay configuration
+│       │   ├── steam.nix           # Steam, Gamescope, Gamemode, & Protontricks
+│       │   ├── launchers.nix       # Lutris, Prism Launcher, RuneLite, Wine, Piper
+│       │   └── emulators.nix       # RetroArch & RPCS3
 │       └── desktop/                # Graphical environment & Wayland components
 │           ├── default.nix         # Desktop aggregator
 │           ├── niri.nix            # Niri compositor config & DankMaterialShell setup
 │           ├── theme.nix           # Cursor (Bibata), GTK theme, and dconf settings
-│           └── apps.nix            # GUI apps (Brave, VS Code, KeepassXC, Antigravity)
+│           ├── audio.nix           # EasyEffects presets and daemon service
+│           ├── media.nix           # MPV configuration
+│           ├── qt.nix              # Kvantum and Qt styling
+│           └── apps/               # Modular desktop applications
+│               ├── default.nix     # Apps aggregator
+│               ├── browsers.nix    # Firefox, Brave Origin, Tor Browser
+│               ├── communication.nix # Vesktop, Signal, Element, Cinny, Thunderbird, Zoom
+│               ├── multimedia.nix  # OBS Studio (PipeWire), Spotify, Kdenlive, Audacity, Komikku
+│               ├── productivity.nix # Obsidian, Zotero, OnlyOffice, KeePassXC, Nextcloud, Thunar
+│               └── development.nix # VS Code, Antigravity IDE, AppImage runner, nixd
 └── hosts/
     ├── arch/
     │   └── default.nix             # Arch profile (genericLinux, native Alacritty)
     └── nixos/
-        ├── default.nix             # NixOS Home Manager profile (Core + Desktop)
+        ├── default.nix             # NixOS Home Manager profile (Core + Desktop + Gaming)
         └── system/
-            ├── configuration.nix   # NixOS system-level configuration
+            ├── configuration.nix   # NixOS system-level configuration (Steam, GameMode, GNOME, PipeWire)
             └── hardware-configuration.nix
 ```
 
