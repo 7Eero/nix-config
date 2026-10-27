@@ -430,5 +430,7 @@
       "trigger": "cb"
     }
   },
-  "configVersion": 42
+  "configVersion": 42,
+  "matugenScheme": "scheme-neutral",
+  "matugenSourceMode": "dominant"
 }
