@@ -62,6 +62,23 @@
     variant = "nodeadkeys";
   };
 
+  # Fonts configuration
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.fira-code
+      nerd-fonts.symbols-only
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
+    fontconfig.defaultFonts = {
+      monospace = [ "FiraCode Nerd Font Mono" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
+      serif = [ "Noto Serif" "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
+
   # Configure console keymap
   console.keyMap = "fi";
   
