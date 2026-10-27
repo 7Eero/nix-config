@@ -33,8 +33,19 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in rec {
-      # NixOS system configuration (sudo nixos-rebuild switch --flake .#nixos)
+      # NixOS system configurations
       nixosConfigurations = {
+        # Laptop profile (sudo nixos-rebuild switch --flake .#nixos-btw)
+        "nixos-btw" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixos-btw/system/configuration.nix
+            niri.nixosModules.niri
+          ];
+        };
+
+        # Desktop profile (sudo nixos-rebuild switch --flake .#nixos)
         "nixos" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -59,7 +70,17 @@
         # Default alias for Arch Linux (user 'eero')
         "eero" = homeConfigurations."eero@archlinux";
 
-        # NixOS host profile
+        # NixOS laptop host profile
+        "eero@nixos-btw" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/nixos-btw/default.nix
+            niri.homeModules.niri
+          ];
+          extraSpecialArgs = { inherit inputs; };
+        };
+
+        # NixOS desktop host profile
         "eero@nixos" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [

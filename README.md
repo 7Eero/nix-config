@@ -51,10 +51,15 @@ Modular Flake-based Home Manager and system configuration for Arch Linux and Nix
 └── hosts/
     ├── arch/
     │   └── default.nix             # Arch profile (genericLinux, native Alacritty)
+    ├── nixos-btw/
+    │   ├── default.nix             # NixOS Laptop Home Manager profile (Core + Desktop + Gaming)
+    │   └── system/
+    │       ├── configuration.nix   # NixOS Laptop system configuration (hostname = "nixos-btw")
+    │       └── hardware-configuration.nix
     └── nixos/
-        ├── default.nix             # NixOS Home Manager profile (Core + Desktop + Gaming)
+        ├── default.nix             # NixOS Desktop Home Manager profile
         └── system/
-            ├── configuration.nix   # NixOS system-level configuration (Steam, GameMode, GNOME, PipeWire)
+            ├── configuration.nix   # NixOS Desktop system configuration (hostname = "nixos")
             └── hardware-configuration.nix
 ```
 
@@ -64,19 +69,29 @@ Modular Flake-based Home Manager and system configuration for Arch Linux and Nix
 
 ### 1. Apply Configuration Changes
 
-* **On Arch Linux (Standalone Home Manager):**
+* **On Arch Linux Desktop (Standalone Home Manager):**
   ```bash
   home-manager switch --flake ~/.config/nix-config
   # or explicitly:
   home-manager switch --flake ~/.config/nix-config#eero@archlinux
   ```
 
-* **On NixOS (System Rebuild):**
+* **On NixOS Laptop (System Rebuild):**
+  ```bash
+  sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos-btw
+  ```
+
+* **On NixOS Laptop (Standalone Home Manager):**
+  ```bash
+  home-manager switch --flake ~/.config/nix-config#eero@nixos-btw
+  ```
+
+* **On NixOS Desktop (System Rebuild):**
   ```bash
   sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos
   ```
 
-* **On NixOS (Standalone Home Manager):**
+* **On NixOS Desktop (Standalone Home Manager):**
   ```bash
   home-manager switch --flake ~/.config/nix-config#eero@nixos
   ```
