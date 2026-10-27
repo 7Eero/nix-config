@@ -13,10 +13,22 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 4;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Garbage collection & store optimization
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  nix.settings.auto-optimise-store = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Blacklist AMD integrated GPU so Nvidia card gets DP-1..3
+  boot.blacklistedKernelModules = [ "amdgpu" ];
 
   networking.hostName = "nixos"; # Define your hostname for Desktop.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,7 +65,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = false;
-  services.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = false;
   services.displayManager.ly.enable = true;
 
   # Configure keymap in X11
@@ -154,6 +166,12 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

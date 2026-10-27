@@ -18,6 +18,10 @@
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
     };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
     cursorTheme = {
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
@@ -37,6 +41,7 @@
       cursor-size = 24;
       gtk-theme = "adw-gtk3-dark";
       color-scheme = "prefer-dark";
+      icon-theme = "Adwaita";
     };
   };
 }

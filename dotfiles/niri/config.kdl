@@ -153,18 +153,13 @@ window-rule {
 }
 
 window-rule {
-    match app-id="[Cc]inny-[Ee]lectron"
+    match title="[Cc]inny"
     open-on-workspace "right"
     block-out-from "screencast"
 }
 
-
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-window-rule {
+    match title="^Dota 2$"
     match title="gamescope"
     match app-id="gamescope"
     open-on-workspace "gaming"
