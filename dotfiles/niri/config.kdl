@@ -88,7 +88,7 @@ recent-windows {
 
 
 spawn-at-startup "dms" "run"
-spawn-at-startup "xwayland-satellite"
+// spawn-at-startup "xwayland-satellite" // managed by niri/systemd
 
 
 spawn-at-startup "steam"
