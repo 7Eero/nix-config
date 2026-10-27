@@ -62,6 +62,38 @@
     variant = "nodeadkeys";
   };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    # Modesetting is required for Wayland compositors (Niri & GNOME Wayland)
+    modesetting.enable = true;
+
+    # Power management settings (false is best for desktop stability)
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    # RTX 4070 uses NVIDIA's modern open-source kernel modules
+    open = true;
+
+    # Enable NVIDIA settings control panel
+    nvidiaSettings = true;
+
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # Wayland & Electron hardware acceleration environment variables
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
+
   # Configure console keymap
   console.keyMap = "fi";
   
