@@ -45,7 +45,7 @@
     LC_NUMERIC = "fi_FI.UTF-8";
     LC_PAPER = "fi_FI.UTF-8";
     LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "fi_FI.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.

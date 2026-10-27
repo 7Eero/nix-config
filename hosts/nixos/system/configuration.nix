@@ -45,7 +45,7 @@
     LC_NUMERIC = "fi_FI.UTF-8";
     LC_PAPER = "fi_FI.UTF-8";
     LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "fi_FI.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -174,10 +174,68 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Enable nix-ld for running generic unpatched dynamic binaries (e.g. Mojang's bundled Java runtimes)
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    fuse3
+    alsa-lib
+    at-spi2-atk
+    at-spi2-core
+    atk
+    cairo
+    cups
+    curl
+    dbus
+    expat
+    fontconfig
+    freetype
+    gdk-pixbuf
+    glib
+    gtk3
+    libGL
+    libappindicator-gtk3
+    libdrm
+    libglvnd
+    libnotify
+    libpulseaudio
+    libunwind
+    libusb1
+    libuuid
+    libxkbcommon
+    mesa
+    nspr
+    nss
+    pango
+    pipewire
+    systemd
+    vulkan-loader
+    libx11
+    libxscrnsaver
+    libxcomposite
+    libxcursor
+    libxdamage
+    libxext
+    libxfixes
+    libxi
+    libxrandr
+    libxrender
+    libxt
+    libxtst
+    libxxf86vm
+    libxcb
+    libxkbfile
+    libxshmfence
+  ];
+
   environment.systemPackages = with pkgs; [
     vim
     wget
     git
+    temurin-bin-21
+    temurin-bin-17
+    temurin-bin-8
   ];
 
   system.stateVersion = "26.05";

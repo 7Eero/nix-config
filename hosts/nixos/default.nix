@@ -6,6 +6,7 @@
     ../../modules/home/shell
     ../../modules/home/terminal/alacritty.nix
     ../../modules/home/desktop
+    ../../modules/home/gaming
   ];
 
   xdg.configFile."niri/config.kdl".source =
