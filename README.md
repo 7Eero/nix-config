@@ -65,6 +65,56 @@ Modular Flake-based Home Manager and system configuration for Arch Linux and Nix
 
 ---
 
+## Initial Setup & Prerequisites
+
+### 1. Enable Flakes Globally
+
+On a fresh NixOS or generic Linux system, enable `nix-command` and `flakes` globally so you can run flake commands without extra flags:
+
+* **System-wide (`/etc/nix/nix.conf`):**
+  ```bash
+  echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+  ```
+
+* **Or User-level (`~/.config/nix/nix.conf`):**
+  ```bash
+  mkdir -p ~/.config/nix
+  echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+  ```
+
+*(Once your configuration is applied, this is managed declaratively by `nix.settings.experimental-features = [ "nix-command" "flakes" ];` in [configuration.nix](hosts/nixos/system/configuration.nix)).*
+
+### 2. Fresh NixOS Installation Quickstart
+
+1. Install NixOS using the installer (ensure your user account is set to `eero`).
+2. Boot into the system and start a shell with Git:
+   ```bash
+   nix-shell -p git
+   ```
+3. Enable flakes globally:
+   ```bash
+   echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+   ```
+4. Clone your repository:
+   ```bash
+   git clone <repo-url> ~/.config/nix-config
+   cd ~/.config/nix-config
+   ```
+5. Copy the installer's generated hardware configuration into the repo:
+   ```bash
+   cp /etc/nixos/hardware-configuration.nix hosts/nixos/system/hardware-configuration.nix
+   git add hosts/nixos/system/hardware-configuration.nix
+   ```
+   > [!IMPORTANT]
+   > You **must** run `git add` on `hardware-configuration.nix`—Nix flakes will ignore untracked files!
+6. Run the initial rebuild:
+   ```bash
+   sudo nixos-rebuild switch --flake .#nixos
+   ```
+7. Reboot.
+
+---
+
 ## Usage
 
 ### 1. Apply Configuration Changes
