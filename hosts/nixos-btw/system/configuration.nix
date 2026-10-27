@@ -105,6 +105,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "backup";
     sharedModules = [];
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
