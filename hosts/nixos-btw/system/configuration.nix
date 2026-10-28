@@ -91,6 +91,13 @@
 
   # Configure console keymap
   console.keyMap = "fi";
+
+  environment.sessionVariables = {
+    GRADLE_USER_HOME = "$HOME/.local/share/gradle";
+    ANDROID_USER_HOME = "$HOME/.local/share/android";
+    NPM_CONFIG_CACHE = "$HOME/.cache/npm";
+    PULSE_COOKIE = "$HOME/.config/pulse/cookie";
+  };
   
   programs.niri = {
     enable = true;

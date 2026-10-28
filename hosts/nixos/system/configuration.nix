@@ -105,6 +105,12 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    CUDA_CACHE_PATH = "$HOME/.cache/nv";
+    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nv";
+    GRADLE_USER_HOME = "$HOME/.local/share/gradle";
+    ANDROID_USER_HOME = "$HOME/.local/share/android";
+    NPM_CONFIG_CACHE = "$HOME/.cache/npm";
+    PULSE_COOKIE = "$HOME/.config/pulse/cookie";
   };
 
   # Fonts configuration

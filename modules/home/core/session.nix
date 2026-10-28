@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Session environment variables (propagated to shells, systemd --user, and Wayland sessions)
@@ -12,15 +12,20 @@
     MANPAGER = "nvim +Man!";
 
     # Keep $HOME clean from stray app files, caches, and dumps (XDG compliance)
-    XCOMPOSECACHE = "$HOME/.cache/X11/xcompose";
-    CUDA_CACHE_PATH = "$HOME/.cache/nv";
-    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nv";
-    DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
-    CARGO_HOME = "$HOME/.local/share/cargo";
-    RUSTUP_HOME = "$HOME/.local/share/rustup";
-    WGETRC = "$HOME/.config/wget/wgetrc";
-    NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$HOME/.config/java";
+    XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    __GL_SHADER_DISK_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
+    CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+    WGETRC = "${config.xdg.configHome}/wget/wgetrc";
+    NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+    NPM_CONFIG_CACHE = "${config.xdg.cacheHome}/npm";
+    NPM_CONFIG_DEVDIR = "${config.xdg.cacheHome}/node-gyp";
+    GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+    ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+    PULSE_COOKIE = "${config.xdg.configHome}/pulse/cookie";
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
   };
 
   # User service to ensure Home Manager session and environment are loaded on login (for Arch & standalone)
@@ -37,12 +42,15 @@
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = "${pkgs.writeShellScript "hm-ensure-env" ''
-        if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-          . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-          ${pkgs.systemd}/bin/systemctl --user import-environment PATH XDG_DATA_DIRS GTK_THEME QT_QPA_PLATFORM EDITOR
-          if command -v dbus-update-activation-environment >/dev/null 2>&1; then
-            dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS GTK_THEME QT_QPA_PLATFORM EDITOR
+        for p in "$HOME/.nix-profile" "/etc/profiles/per-user/$USER"; do
+          if [ -f "$p/etc/profile.d/hm-session-vars.sh" ]; then
+            . "$p/etc/profile.d/hm-session-vars.sh"
+            break
           fi
+        done
+        ${pkgs.systemd}/bin/systemctl --user import-environment PATH XDG_DATA_DIRS GTK_THEME QT_QPA_PLATFORM EDITOR TERMINAL CUDA_CACHE_PATH __GL_SHADER_DISK_CACHE_PATH GRADLE_USER_HOME ANDROID_USER_HOME NPM_CONFIG_CACHE NPM_CONFIG_USERCONFIG PULSE_COOKIE
+        if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+          dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS GTK_THEME QT_QPA_PLATFORM EDITOR TERMINAL CUDA_CACHE_PATH __GL_SHADER_DISK_CACHE_PATH GRADLE_USER_HOME ANDROID_USER_HOME NPM_CONFIG_CACHE NPM_CONFIG_USERCONFIG PULSE_COOKIE
         fi
       ''}";
     };
