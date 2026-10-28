@@ -62,6 +62,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.excludePackages = [ pkgs.xterm ];
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = false;
@@ -85,8 +86,8 @@
     # Modesetting is required for Wayland compositors (Niri & GNOME Wayland)
     modesetting.enable = true;
 
-    # Power management settings (false is best for desktop stability)
-    powerManagement.enable = false;
+    # Power management settings (required for suspend/resume to preserve video memory and wake up displays)
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
 
     # RTX 4070 uses NVIDIA's modern open-source kernel modules
@@ -130,9 +131,27 @@
     enable = true;
     package = pkgs.niri; # 26.4 — matches Arch host
   };
+
+  # XDG Desktop Portal for Niri (enables file pickers, screencasting, etc.)
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      niri = {
+        default = [ "gnome" "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Access" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      };
+    };
+  };
   
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Mounting & file manager support (udisks2, gvfs) and Thunar
   services.udisks2.enable = true;

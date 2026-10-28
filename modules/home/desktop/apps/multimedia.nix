@@ -15,5 +15,7 @@
     audacity              # Audio editor and recorder
     kdePackages.kdenlive  # Non-linear video editor
     komikku               # Manga reader
+    foliate
+    imv
   ];
 }

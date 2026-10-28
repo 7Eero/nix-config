@@ -1,8 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -10,7 +11,7 @@
     history = {
       size = 10000;
       save = 10000;
-      path = "$HOME/.zsh_history";
+      path = "${config.xdg.dataHome}/zsh/history";
       append = true;
     };
 
@@ -22,7 +23,7 @@
       c = "clear";
       bye = "shutdown -h now";
       neofetch = "fastfetch -c neofetch.jsonc --logo-type chafa -l ~/.config/fastfetch/img/pfp.jpg";
-      reload = "source $HOME/.zshrc && echo \".zshrc sourced!\"";
+      reload = "source $ZDOTDIR/.zshrc && echo \".zshrc sourced!\"";
       "wttr" = "curl wttr.in | head -n -1";
       t25 = "termdown 25m";
       yayf = "yay -Slq | fzf --multi --preview 'paru -Sii {1}' --preview-window=down:75% | xargs -ro yay -S";

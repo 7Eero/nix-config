@@ -8,7 +8,19 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
     QT_QPA_PLATFORM = "wayland";
     EDITOR = "nvim";
+    TERMINAL = "alacritty";
     MANPAGER = "nvim +Man!";
+
+    # Keep $HOME clean from stray app files, caches, and dumps (XDG compliance)
+    XCOMPOSECACHE = "$HOME/.cache/X11/xcompose";
+    CUDA_CACHE_PATH = "$HOME/.cache/nv";
+    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nv";
+    DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
+    CARGO_HOME = "$HOME/.local/share/cargo";
+    RUSTUP_HOME = "$HOME/.local/share/rustup";
+    WGETRC = "$HOME/.config/wget/wgetrc";
+    NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$HOME/.config/java";
   };
 
   # User service to ensure Home Manager session and environment are loaded on login (for Arch & standalone)

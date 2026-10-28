@@ -432,5 +432,8 @@
   },
   "configVersion": 42,
   "matugenScheme": "scheme-neutral",
-  "matugenSourceMode": "dominant"
+  "matugenSourceMode": "dominant",
+  "spotlightSectionViewModes": {
+    "apps": "list"
+  }
 }

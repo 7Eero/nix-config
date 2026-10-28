@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Cursor Theming
@@ -14,6 +14,7 @@
   # GTK Theme
   gtk = {
     enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     theme = {
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
