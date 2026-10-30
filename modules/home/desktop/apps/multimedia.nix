@@ -11,11 +11,12 @@
 
   # Audio, video, and creative desktop applications
   home.packages = with pkgs; [
-    spotify               # Music streaming
-    audacity              # Audio editor and recorder
-    kdePackages.kdenlive  # Non-linear video editor
-    komikku               # Manga reader
+    spotify
+    #audacity
+    #kdePackages.kdenlive
+    komikku
     foliate
     imv
+    mpv
   ];
 }

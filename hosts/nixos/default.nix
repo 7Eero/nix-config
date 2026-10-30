@@ -9,6 +9,8 @@
     ../../modules/home/gaming
   ];
 
+  modules.desktop.audio.isolateOutputs = true;
+
   xdg.configFile."niri/config.kdl".source =
     lib.mkForce (config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config/dotfiles/niri/config.kdl");
   xdg.configFile."DankMaterialShell/settings.json".source =

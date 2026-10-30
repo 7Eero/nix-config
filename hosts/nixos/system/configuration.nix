@@ -27,7 +27,6 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Blacklist AMD integrated GPU so Nvidia card gets DP-1..3
   boot.blacklistedKernelModules = [ "amdgpu" ];
 
   networking.hostName = "nixos"; # Define your hostname for Desktop.
@@ -57,7 +56,7 @@
     LC_NUMERIC = "fi_FI.UTF-8";
     LC_PAPER = "fi_FI.UTF-8";
     LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_TIME = "en_DK.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -83,17 +82,15 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-    # Modesetting is required for Wayland compositors (Niri & GNOME Wayland)
+    # Modesetting is required for Wayland compositors
     modesetting.enable = true;
 
     # Power management settings (required for suspend/resume to preserve video memory and wake up displays)
     powerManagement.enable = true;
     powerManagement.finegrained = false;
 
-    # RTX 4070 uses NVIDIA's modern open-source kernel modules
     open = true;
 
-    # Enable NVIDIA settings control panel
     nvidiaSettings = true;
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -135,10 +132,9 @@
   
   programs.niri = {
     enable = true;
-    package = pkgs.niri; # 26.4 — matches Arch host
+    package = pkgs.niri;
   };
 
-  # XDG Desktop Portal for Niri (enables file pickers, screencasting, etc.)
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -218,10 +214,9 @@
       "eero" = import ../default.nix;
     };
   };
-  # Install firefox.
+  
   programs.firefox.enable = true;
   
-  # Gaming support
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -234,7 +229,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable nix-ld for running generic unpatched dynamic binaries (e.g. Mojang's bundled Java runtimes)
+  # Enable nix-ld for running generic unpatched dynamic binaries
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
