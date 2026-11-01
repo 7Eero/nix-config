@@ -27,6 +27,7 @@ in
     bat
     jq
     ani-cli
+    home-manager
     fzf
     devenv
   ];

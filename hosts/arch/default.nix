@@ -19,4 +19,14 @@
 
   # Niri is installed and managed via pacman (niri-git) on Arch
   programs.niri.enable = false;
+
+  # nh (Yet Another Nix Helper) for standalone Home Manager on Arch
+  programs.nh = {
+    enable = true;
+    flake = "/home/eero/.config/nix-config";
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
+  };
 }

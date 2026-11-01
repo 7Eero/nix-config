@@ -7,6 +7,12 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    sessionVariables = {
+      NH_FLAKE = "$HOME/.config/nix-config";
+    };
+    envExtra = ''
+      export NH_FLAKE="$HOME/.config/nix-config"
+    '';
 
     history = {
       size = 10000;
@@ -23,12 +29,17 @@
       c = "clear";
       bye = "shutdown -h now";
       neofetch = "fastfetch -c neofetch.jsonc --logo-type chafa -l ~/.config/fastfetch/img/pfp.jpg";
-      reload = "source $ZDOTDIR/.zshrc && echo \".zshrc sourced!\"";
+      reload = "[ -f $ZDOTDIR/.zshenv ] && source $ZDOTDIR/.zshenv; source $ZDOTDIR/.zshrc && echo \".zshrc sourced!\"";
       "wttr" = "curl wttr.in | head -n -1";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
+      nos = "nh os switch";
+      nob = "nh os boot";
+      not = "nh os test";
+      nhh = "nh home switch";
+      nhs = "nh search";
     };
 
     oh-my-zsh = {

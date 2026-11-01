@@ -3,6 +3,7 @@
 {
   # Session environment variables (propagated to shells, systemd --user, and Wayland sessions)
   home.sessionVariables = {
+    NH_FLAKE = "${config.home.homeDirectory}/.config/nix-config";
     GTK_THEME = "adw-gtk3-dark";
     ADW_DEBUG_COLOR_SCHEME = "prefer-dark";
     _JAVA_AWT_WM_NONREPARENTING = "1";

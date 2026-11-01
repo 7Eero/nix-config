@@ -16,11 +16,13 @@
   boot.loader.systemd-boot.configurationLimit = 4;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Garbage collection & store optimization
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  programs.nh = {
+    enable = true;
+    flake = "/home/eero/.config/nix-config";
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
   };
   nix.settings.auto-optimise-store = true;
 
@@ -201,6 +203,7 @@
 
   programs.vim.enable = true;
   programs.vim.defaultEditor = true;  
+  programs.zsh.enable = true;  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -211,6 +214,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    nvd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

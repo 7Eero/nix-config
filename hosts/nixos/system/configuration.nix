@@ -16,11 +16,14 @@
   boot.loader.systemd-boot.configurationLimit = 4;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Garbage collection & store optimization
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  # nh (Yet Another Nix Helper) & garbage collection
+  programs.nh = {
+    enable = true;
+    flake = "/home/eero/.config/nix-config";
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
   };
   nix.settings.auto-optimise-store = true;
 
@@ -225,6 +228,7 @@
 
   programs.vim.enable = true;
   programs.vim.defaultEditor = true;  
+  programs.zsh.enable = true;  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -288,6 +292,7 @@
     vim
     wget
     git
+    nvd
     temurin-bin-21
     temurin-bin-17
     temurin-bin-8
