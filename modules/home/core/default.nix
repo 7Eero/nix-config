@@ -7,6 +7,7 @@
     ./git.nix
     ./btop.nix
     ./fastfetch.nix
+    ./jj.nix
   ];
 
   # Mandatory user options
