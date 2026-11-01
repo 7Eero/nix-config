@@ -13,7 +13,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    # General CLI Utilities
     ripgrep
     fd
     eza

@@ -5,8 +5,6 @@
     ../../modules/home/core
     ../../modules/home/shell
     ../../modules/home/terminal/alacritty.nix
-    ../../modules/home/desktop/theme.nix
-    ../../modules/home/desktop/qt.nix
     ../../modules/home/desktop/audio.nix
     ../../modules/home/desktop/media.nix
   ];

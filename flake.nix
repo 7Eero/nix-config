@@ -26,9 +26,13 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, niri, ... }@inputs:
+  outputs = { nixpkgs, home-manager, niri, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -40,6 +44,8 @@
           modules = [
             ./hosts/nixos-btw/system/configuration.nix
             niri.nixosModules.niri
+            stylix.nixosModules.stylix
+            ./modules/theme/stylix.nix
           ];
         };
 
@@ -49,6 +55,8 @@
           modules = [
             ./hosts/nixos/system/configuration.nix
             niri.nixosModules.niri
+            stylix.nixosModules.stylix
+            ./modules/theme/stylix.nix
           ];
         };
       };
@@ -59,6 +67,8 @@
           modules = [
             ./hosts/arch/default.nix
             niri.homeModules.niri
+            stylix.homeModules.stylix
+            ./modules/theme/stylix.nix
           ];
           extraSpecialArgs = { inherit inputs; };
         };
@@ -70,6 +80,8 @@
           modules = [
             ./hosts/nixos-btw/default.nix
             niri.homeModules.niri
+            stylix.homeModules.stylix
+            ./modules/theme/stylix.nix
           ];
           extraSpecialArgs = { inherit inputs; };
         };
@@ -79,6 +91,8 @@
           modules = [
             ./hosts/nixos/default.nix
             niri.homeModules.niri
+            stylix.homeModules.stylix
+            ./modules/theme/stylix.nix
           ];
           extraSpecialArgs = { inherit inputs; };
         };

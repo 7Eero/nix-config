@@ -1,6 +1,6 @@
 {
-  "currentThemeName": "dynamic",
-  "customThemeFile": "/home/eero/.config/DankMaterialShell/themes/steamDeck/theme.json",
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/eero/.config/DankMaterialShell/themes/gruvboxMaterial/theme.json",
   "radiusStrength": 13,
   "clockFormat": "24h",
   "animationDuration": 0,
@@ -90,7 +90,7 @@
       ]
     }
   ],
-  "currentThemeCategory": "dynamic",
+  "currentThemeCategory": "registry",
   "dmsWindowsFloatingSeeded": [
     "niri"
   ],
