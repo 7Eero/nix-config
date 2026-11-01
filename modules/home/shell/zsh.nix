@@ -25,8 +25,6 @@
       neofetch = "fastfetch -c neofetch.jsonc --logo-type chafa -l ~/.config/fastfetch/img/pfp.jpg";
       reload = "source $ZDOTDIR/.zshrc && echo \".zshrc sourced!\"";
       "wttr" = "curl wttr.in | head -n -1";
-      t25 = "termdown 25m";
-      yayf = "yay -Slq | fzf --multi --preview 'paru -Sii {1}' --preview-window=down:75% | xargs -ro yay -S";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
@@ -38,6 +36,7 @@
       plugins = [
         "git"
         "python"
+        "jj"
       ];
     };
 
@@ -58,11 +57,29 @@
         echo -n "%f%~"
         echo -n " "
 
-        local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
-        if [[ -n "$git_branch" ]]; then
-          local git_status=$(git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
-          [[ -n "$git_status" ]] && echo -n "%F{11}" || echo -n "%F{10}"
-          echo -n "‹''${git_branch}›%f"
+        # Check for Jujutsu first, then fall back to Git
+        local jj_root=$(jj root --quiet 2> /dev/null)
+        if [[ -n "$jj_root" ]]; then
+          local jj_info=$(jj log --no-graph -r @ -T '
+            change_id.shortest()
+            ++ if(bookmarks, " (" ++ bookmarks.map(|b| b.name()).join(",") ++ ")")
+            ++ if(conflict, "!", if(!empty, "*", ""))
+          ' --no-pager --color never 2> /dev/null)
+          if [[ "$jj_info" == *'!'* ]]; then
+            echo -n "%F{1}"   # Red for conflicts
+          elif [[ "$jj_info" == *'*'* ]]; then
+            echo -n "%F{11}"  # Yellow for modified
+          else
+            echo -n "%F{10}"  # Green for clean
+          fi
+          echo -n "‹jj:''${jj_info}›%f"
+        else
+          local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
+          if [[ -n "$git_branch" ]]; then
+            local git_status=$(git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
+            [[ -n "$git_status" ]] && echo -n "%F{11}" || echo -n "%F{10}"
+            echo -n "‹''${git_branch}›%f"
+          fi
         fi
 
         if [[ -v APHRODITE_THEME_SHOW_TIME ]]; then
