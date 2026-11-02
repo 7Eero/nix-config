@@ -9,5 +9,6 @@
     #cinny-desktop
     thunderbird
     #zoom-us
+    #teamspeak6-client
   ];
 }

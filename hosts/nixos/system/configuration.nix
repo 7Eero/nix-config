@@ -44,6 +44,19 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Firewall configuration (Strict incoming block, allow ping and established/related)
+  networking.firewall = {
+    enable = true;
+    allowPing = true;
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ ];
+    # Examples for opening ports or port ranges when needed:
+    # allowedTCPPorts = [ 22 8080 ];
+    # allowedUDPPorts = [ 53 ];
+    # allowedTCPPortRanges = [ { from = 8000; to = 8010; } ];
+    # allowedUDPPortRanges = [ { from = 8000; to = 8010; } ];
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";
 
