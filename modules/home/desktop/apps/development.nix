@@ -11,13 +11,16 @@
 
   # Development tools, editors, and formatters
   home.packages = with pkgs; [
-    inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
+    #inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
 
     # appimage-run with webkit2gtk bundled for Electron/WebKitGTK AppImages
     (appimage-run.override {
       extraPkgs = p: with p; [ webkitgtk_4_1 libsoup_3 gdk-pixbuf openssl libayatana-appindicator ];
     })
+
+    # AI coding agents
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.dsh
 
     # Language Tooling & Formatters
     nixd

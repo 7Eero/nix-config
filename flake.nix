@@ -30,6 +30,9 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Deliberately does not follow our nixpkgs: the flake CI builds against its
+    # own pin and publishes those paths to cache.numtide.com.
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = { nixpkgs, home-manager, niri, stylix, ... }@inputs:

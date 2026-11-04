@@ -76,7 +76,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ### 2. Fresh NixOS Install
 ```bash
 nix-shell -p git
-git clone <repo-url> ~/.config/nix-config && cd ~/.config/nix-config
+git clone https://github.com/7Eero/nix-config.git ~/.config/nix-config && cd ~/.config/nix-config
 cp /etc/nixos/hardware-configuration.nix hosts/nixos/system/
 git add hosts/nixos/system/hardware-configuration.nix
 sudo nixos-rebuild switch --flake .#nixos

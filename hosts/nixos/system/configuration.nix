@@ -50,6 +50,8 @@
     allowPing = true;
     allowedTCPPorts = [ ];
     allowedUDPPorts = [ ];
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
     # Examples for opening ports or port ranges when needed:
     # allowedTCPPorts = [ 22 8080 ];
     # allowedUDPPorts = [ 53 ];
