@@ -31,7 +31,8 @@ EOF
   # 2. DankMaterialShell, Quickshell & Compositor Helpers
   home.packages = with pkgs; [
     inputs.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system}.default
-    quickshell # provides both 'quickshell' and 'qs'
+    quickshell
+    qt6.qtsvg
     matugen
     xwayland-satellite
   ];

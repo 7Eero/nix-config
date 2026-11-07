@@ -19,6 +19,7 @@ in
     home.packages = with pkgs; [
       calf
       lsp-plugins
+      easyeffects
     ];
 
     # Seed mutable settings and presets on activation

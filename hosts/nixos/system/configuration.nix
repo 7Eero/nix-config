@@ -30,6 +30,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernelParams = [ "mem_sleep_default=s2idle" ];
+
   boot.blacklistedKernelModules = [ "amdgpu" ];
 
   networking.hostName = "nixos"; # Define your hostname for Desktop.
@@ -52,11 +54,6 @@
     allowedUDPPorts = [ ];
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-    # Examples for opening ports or port ranges when needed:
-    # allowedTCPPorts = [ 22 8080 ];
-    # allowedUDPPorts = [ 53 ];
-    # allowedTCPPortRanges = [ { from = 8000; to = 8010; } ];
-    # allowedUDPPortRanges = [ { from = 8000; to = 8010; } ];
   };
 
   # Set your time zone.
@@ -241,8 +238,11 @@
   };
   programs.gamemode.enable = true;
 
-  programs.vim.enable = true;
-  programs.vim.defaultEditor = true;  
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  }; 
+  
   programs.zsh.enable = true;  
 
   # Allow unfree packages
@@ -294,7 +294,11 @@
     libxfixes
     libxi
     libxrandr
-    libxrender
+    libxrender    # Examples for opening ports or port ranges when needed:
+    # allowedTCPPorts = [ 22 8080 ];
+    # allowedUDPPorts = [ 53 ];
+    # allowedTCPPortRanges = [ { from = 8000; to = 8010; } ];
+    # allowedUDPPortRanges = [ { from = 8000; to = 8010; } ];
     libxt
     libxtst
     libxxf86vm
@@ -304,7 +308,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    vim
     wget
     git
     nvd
