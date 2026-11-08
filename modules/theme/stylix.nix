@@ -5,7 +5,7 @@
     enable = true;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-    image = config.lib.stylix.pixel "base00";
+    #image = config.lib.stylix.pixel "base00";
 
     cursor = {
       package = pkgs.bibata-cursors;

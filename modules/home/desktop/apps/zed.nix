@@ -3,7 +3,7 @@
 {
   programs.zed-editor = {
     enable = true;
-    extensions = [ "nix"];
+    extensions = [ "nix" "toml" "kdl" ];
     userSettings = {
       hour_format = "hour24";
       languages = {
