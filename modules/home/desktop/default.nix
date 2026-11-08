@@ -6,6 +6,5 @@
     ./apps
     ./audio.nix
     ./media.nix
-    ./kdeconnect.nix
   ];
 }
