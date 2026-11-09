@@ -92,7 +92,8 @@
   ],
   "currentThemeCategory": "registry",
   "dmsWindowsFloatingSeeded": [
-    "niri"
+    "niri",
+    "hyprland"
   ],
   "widgetBackgroundColor": "sth",
   "controlCenterWidgets": [
@@ -320,7 +321,7 @@
   "showOnLastDisplay": {
     "notifications": true
   },
-  "displaySnapToEdge": false,
+  "displaySnapToEdge": true,
   "barConfigs": [
     {
       "id": "default",

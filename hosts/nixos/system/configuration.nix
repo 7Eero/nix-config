@@ -36,7 +36,7 @@
 
   networking.hostName = "nixos"; # Define your hostname for Desktop.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Configure network proxy if necessary
@@ -144,10 +144,15 @@
 
   # Configure console keymap
   console.keyMap = "fi";
-  
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
+  };
+
+  programs.hyprland = {
+    enable = false;
+    withUWSM = true;
   };
 
   xdg.portal = {
@@ -166,7 +171,7 @@
       };
     };
   };
-  
+
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
@@ -217,7 +222,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
-  
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -229,9 +234,9 @@
       "eero" = import ../default.nix;
     };
   };
-  
+
   programs.firefox.enable = true;
-  
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -241,9 +246,9 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-  }; 
-  
-  programs.zsh.enable = true;  
+  };
+
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
