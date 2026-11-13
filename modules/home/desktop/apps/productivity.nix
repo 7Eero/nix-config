@@ -3,11 +3,12 @@
 {
   # Productivity, documents, security, and utility applications
   home.packages = with pkgs; [
-    #obsidian 
+    #obsidian
     onlyoffice-desktopeditors
     keepassxc
     nextcloud-client
-    thunar                       
+    thunar
     transmission_4-qt
+    file-roller
   ];
 }

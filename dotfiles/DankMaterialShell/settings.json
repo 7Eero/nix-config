@@ -29,6 +29,7 @@
       "showOnLastDisplay": true,
       "position": 1,
       "mode": "compact",
+      "middleClickAction": "close",
       "taskbarAlign": "center",
       "widgetExpansion": "popout",
       "iconSize": 40,
@@ -345,8 +346,8 @@
         {
           "id": "focusedWindow",
           "enabled": true,
-          "focusedWindowCompactMode": true,
-          "focusedWindowShowIcon": false
+          "focusedWindowShowIcon": false,
+          "focusedWindowShowAppName": false
         }
       ],
       "centerWidgets": [
@@ -431,7 +432,7 @@
       "trigger": "cb"
     }
   },
-  "configVersion": 42,
+  "configVersion": 43,
   "matugenScheme": "scheme-neutral",
   "matugenSourceMode": "dominant",
   "spotlightSectionViewModes": {

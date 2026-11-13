@@ -28,5 +28,7 @@ in
     ani-cli
     fzf
     devenv
+    tmux
+    unzip
   ];
 }
