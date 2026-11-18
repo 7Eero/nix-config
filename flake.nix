@@ -31,9 +31,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    kopuz = {
+      url = "github:temidaradev/kopuz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, niri, stylix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, niri, stylix, kopuz, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -41,6 +45,10 @@
         config.allowUnfree = true;
       };
     in rec {
+      packages.${system} = {
+        inherit (kopuz.packages.${system}) kopuz;
+      };
+
       nixosConfigurations = {
         "nixos-btw" = nixpkgs.lib.nixosSystem {
           inherit system;

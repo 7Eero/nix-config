@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # OBS Studio with PipeWire audio capture plugin
@@ -18,5 +18,6 @@
     foliate
     imv
     mpv
+    inputs.kopuz.packages.${pkgs.stdenv.hostPlatform.system}.kopuz
   ];
 }
