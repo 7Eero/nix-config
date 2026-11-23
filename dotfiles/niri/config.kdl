@@ -17,7 +17,7 @@ input {
     mouse {
         accel-profile "flat"
     }
-    
+
 
     trackpoint {
     }
@@ -28,7 +28,7 @@ input {
 }
 
 layout {
-    gaps 5
+    gaps 0
 
     center-focused-column "never"
 
@@ -45,7 +45,7 @@ layout {
 
     focus-ring {
 
-        width 2
+        width 0
 
 
         active-color "white"
@@ -55,9 +55,9 @@ layout {
     }
 
     border {
-        off
+        //off
 
-        width 4
+        width 2
         active-color "#ffc87f"
         inactive-color "#505050"
 
@@ -66,7 +66,7 @@ layout {
     }
 
     shadow {
-
+        off
 
 
         softness 30
@@ -117,7 +117,7 @@ workspace "gaming" {
 }
 
 workspace "right" {
-    open-on-output "DP-2" 
+    open-on-output "DP-2"
 }
 
 workspace "left" {
@@ -126,7 +126,7 @@ workspace "left" {
 
 window-rule {
     match app-id="[Ss]team"
-    open-on-workspace "left" 
+    open-on-workspace "left"
 }
 
 window-rule {
@@ -198,7 +198,7 @@ binds {
     Mod+V hotkey-overlay-title="Clipboard Manager" {
         spawn "dms" "ipc" "call" "clipboard" "toggle";
     }
-    
+
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }

@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "customThemeFile": "/home/eero/.config/DankMaterialShell/themes/gruvboxMaterial/theme.json",
-  "radiusStrength": 13,
+  "radiusStrength": 0,
   "clockFormat": "24h",
   "animationDuration": 0,
   "blurBorderOpacity": 1,
@@ -447,5 +447,7 @@
     },
     "gruvboxMaterial": "hard"
   },
-  "generateThemeAtStartup": false
+  "generateThemeAtStartup": false,
+  "focusRingWidth": 1,
+  "niriLayoutGapsOverride": -2
 }
