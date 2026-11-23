@@ -123,6 +123,26 @@
         "type": "github"
       }
     },
+    "cinny-electron": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793399099,
+        "narHash": "sha256-WIDiOHhIs58TfrZ5gkkTWy68D8VpsqDsH6/6OITW468=",
+        "owner": "7Eero",
+        "repo": "cinny-electron",
+        "rev": "504051b4f285591ee656c5814a0a42e3db567f95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "7Eero",
+        "repo": "cinny-electron",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1783203018,
@@ -569,6 +589,7 @@
     "root": {
       "inputs": {
         "antigravity-nix": "antigravity-nix",
+        "cinny-electron": "cinny-electron",
         "dankMaterialShell": "dankMaterialShell",
         "dgop": "dgop",
         "dms-cli": "dms-cli",
