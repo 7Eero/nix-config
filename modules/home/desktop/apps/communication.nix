@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # Communication & chat clients
@@ -6,7 +6,7 @@
     vesktop
     #signal-desktop
     #element-desktop
-    inputs.cinny-electron.packages.${pkgs.stdenv.hostPlatform.system}.cinny-electron
+    #cinny-desktop
     thunderbird
     #zoom-us
     #teamspeak6-client

@@ -35,13 +35,9 @@
       url = "github:temidaradev/kopuz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cinny-electron = {
-      url = "github:7Eero/cinny-electron";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { nixpkgs, home-manager, niri, stylix, kopuz, cinny-electron, ... }@inputs:
+  outputs = { nixpkgs, home-manager, niri, stylix, kopuz, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -51,7 +47,6 @@
     in rec {
       packages.${system} = {
         inherit (kopuz.packages.${system}) kopuz;
-        inherit (cinny-electron.packages.${system}) cinny-electron;
       };
 
       nixosConfigurations = {
